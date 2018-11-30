@@ -65,20 +65,17 @@ def mazeSolver(curRow, curColumn, visited):
                     moveBack = move('RIGHT')
                 elif end:
                     return True
-    else:
-        return False
-
-
+    return False
 
 
 
 
 postReq = requests.post('http://ec2-34-216-8-43.us-west-2.compute.amazonaws.com/session', {'uid': '004786138'})
 getReq = requests.get('http://ec2-34-216-8-43.us-west-2.compute.amazonaws.com/game?token=' + str(postReq.json()['token']))
-maxRow = getReq.json()['maze_size'][0]
-maxColumn = getReq.json()['maze_size'][1]
-startingPointRow = getReq.json()['current_location'][0]
-startingPointColumn = getReq.json()['current_location'][1]
-visited = [[0]*maxColumn for i in range(maxRow)]
-answer = mazeSolver(startingPointRow, startingPointColumn, visited)
+maxColumn = getReq.json()['maze_size'][0]
+maxRow = getReq.json()['maze_size'][1]
+startingPointColumn = getReq.json()['current_location'][0]
+startingPointRow = getReq.json()['current_location'][1]
+visited = [[0]*maxRow for i in range(maxColumn)]
+answer = mazeSolver(0, 0, visited)
 print(answer)
