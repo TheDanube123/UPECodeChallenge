@@ -84,7 +84,7 @@ while (i != 6):
     startingPointColumn = getReq.json()['current_location'][0]
     startingPointRow = getReq.json()['current_location'][1]
     visited = [[0]*maxColumn for i in range(maxRow)]
-    answer = mazeSolver(startingPointColumn, startingPointRow, visited)
+    answer = mazeSolver(startingPointRow, startingPointColumn, visited)
     print(answer)
     i = i + 1
 
